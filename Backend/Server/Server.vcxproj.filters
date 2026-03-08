@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\controllers">
+      <UniqueIdentifier>{f943ceea-eb02-4eed-b192-acf8a90852e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\services">
+      <UniqueIdentifier>{7e6b2b89-4d74-46d5-b8fe-17797a35827a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\repositories">
+      <UniqueIdentifier>{fb4ce8d3-ce61-46b5-9b44-48ba6c810d36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\models">
+      <UniqueIdentifier>{8712160e-d9be-4fdd-a457-778e10110f10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\dto">
+      <UniqueIdentifier>{7e02a66e-3b2a-400a-b8f5-c66c1d08c706}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{cffc44b4-f036-4337-bce8-87c938a6c972}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\config">
+      <UniqueIdentifier>{5b338f22-7eee-4639-851e-50fa47092122}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\data">
+      <UniqueIdentifier>{dc38cafd-57b9-4bff-af96-19b866f033f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\models">
+      <UniqueIdentifier>{f7dcc329-dc05-4a49-b2c1-c60bbd9cf28a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\dto">
+      <UniqueIdentifier>{6e31e568-bb20-4abb-a4ae-c6a5d6f94107}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\repositories">
+      <UniqueIdentifier>{4e7e7444-a183-435c-a771-94f3ad3e6ad5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\services">
+      <UniqueIdentifier>{8708b193-1aa5-4065-a050-d5d83575bd87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\controllers">
+      <UniqueIdentifier>{b71d7f08-7dca-42ef-aa16-67b443bc1309}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{fc905bbe-621c-4f31-968e-25a0e05cd5f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\config">
+      <UniqueIdentifier>{2aa54416-8586-4e3f-b783-46bf3cb58490}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\data">
+      <UniqueIdentifier>{dcf72899-2f8f-497d-806a-e68f9d182e45}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DatasetRepository.cpp">
+      <Filter>Source Files\repositories</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchService.cpp">
+      <Filter>Source Files\services</Filter>
+    </ClCompile>
+    <ClCompile Include="LocationService.cpp">
+      <Filter>Source Files\services</Filter>
+    </ClCompile>
+    <ClCompile Include="POIService.cpp">
+      <Filter>Source Files\services</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchController.cpp">
+      <Filter>Source Files\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="LocationController.cpp">
+      <Filter>Source Files\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="POIController.cpp">
+      <Filter>Source Files\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonUtils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="POI.h">
+      <Filter>Header Files\models</Filter>
+    </ClInclude>
+    <ClInclude Include="Location.h">
+      <Filter>Header Files\models</Filter>
+    </ClInclude>
+    <ClInclude Include="SearchResultDto.h">
+      <Filter>Header Files\dto</Filter>
+    </ClInclude>
+    <ClInclude Include="UserLocationDto.h">
+      <Filter>Header Files\dto</Filter>
+    </ClInclude>
+    <ClInclude Include="DatasetRepository.h">
+      <Filter>Header Files\repositories</Filter>
+    </ClInclude>
+    <ClInclude Include="SearchService.h">
+      <Filter>Header Files\services</Filter>
+    </ClInclude>
+    <ClInclude Include="LocationService.h">
+      <Filter>Header Files\services</Filter>
+    </ClInclude>
+    <ClInclude Include="POIService.h">
+      <Filter>Header Files\services</Filter>
+    </ClInclude>
+    <ClInclude Include="SearchController.h">
+      <Filter>Header Files\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="LocationController.h">
+      <Filter>Header Files\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="POIController.h">
+      <Filter>Header Files\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonUtils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="AppConfig.h">
+      <Filter>Header Files\config</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

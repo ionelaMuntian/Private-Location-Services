@@ -1,0 +1,39 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.VC.db
+*.VC.opendb
+*.ipch
+
+# Build outputs
+x64/
+Debug/
+Release/
+build/
+dist/
+out/
+*.obj
+*.exe
+*.ilk
+*.pdb
+*.idb
+*.tlog
+*.recipe
+*.log
+*.dll
+
+# Node
+node_modules/
+Frontend/node_modules/
+Frontend/frontend/node_modules/
+
+# Vite
+Frontend/frontend/dist/
+
+# Generated / temporary
+CMakeFiles/
+CMakeCache.txt
+
+# Large local dataset
+Database/map.osm

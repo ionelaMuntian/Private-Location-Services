@@ -1,0 +1,16 @@
+# plaintext_client.py
+from .base import ClientCryptoAdapter
+
+
+class PlaintextClientAdapter(ClientCryptoAdapter):
+    def prepare_query(self, latitude: float, longitude: float, k: int) -> dict:
+        return {
+            "plaintext_query": {
+                "latitude_m": latitude,
+                "longitude_m": longitude,
+            },
+            "encrypted_query": None,
+        }
+
+    def parse_response(self, response_data: dict) -> list[dict]:
+        return response_data["results"]

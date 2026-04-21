@@ -1,4 +1,4 @@
-# plaintext_client.py
+# client_app/app/modules/poi_search/crypto/plaintext_client.py
 from .base import ClientCryptoAdapter
 
 
@@ -10,7 +10,8 @@ class PlaintextClientAdapter(ClientCryptoAdapter):
                 "longitude_m": longitude,
             },
             "encrypted_query": None,
+            "local_state": None,
         }
 
-    def parse_response(self, response_data: dict) -> list[dict]:
+    def parse_response(self, response_data: dict, local_state: dict | None = None) -> list[dict]:
         return response_data["results"]

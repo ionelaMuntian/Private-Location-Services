@@ -33,7 +33,7 @@ export default function HomePage() {
       <section className="services-grid">
         <ServiceCard
           title="Nearest Points of Interest"
-          description="Search for the nearest hospitals, pharmacies, or other points of interest using plaintext or encrypted query flows."
+          description="Search for the nearest hospitals, pharmacies, or other points of interest using plaintext, CKKS, or Concrete query flows."
           route="/poi-search"
           status="Ready"
         />

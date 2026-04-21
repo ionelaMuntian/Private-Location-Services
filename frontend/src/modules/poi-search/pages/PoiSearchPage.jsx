@@ -54,6 +54,7 @@ export default function PoiSearchPage() {
         scheme: response.data.scheme,
         category: response.data.category,
         k: response.data.k,
+        resultCount: response.data.results?.length || 0,
       });
 
       setResults(response.data.results || []);
@@ -88,7 +89,8 @@ export default function PoiSearchPage() {
             <p className="poi-eyebrow">Nearest Points of Interest</p>
             <h1>Search nearby services</h1>
             <p className="poi-subtitle">
-              Query nearby categories using plaintext or CKKS through the trusted client.
+              Query nearby categories using plaintext, CKKS, or Concrete through
+              the trusted client.
             </p>
           </div>
 
@@ -109,7 +111,7 @@ export default function PoiSearchPage() {
             <div className="poi-tags">
               <span>Trusted Client</span>
               <span>POI Search</span>
-              <span>Plaintext / CKKS</span>
+              <span>Plaintext / CKKS / Concrete</span>
             </div>
           </div>
 
@@ -188,8 +190,16 @@ export default function PoiSearchPage() {
                 >
                   <option value="plaintext">plaintext</option>
                   <option value="ckks">ckks</option>
+                  <option value="concrete">concrete</option>
                 </select>
               </label>
+
+              {form.scheme === "concrete" && (
+                <div className="full-width poi-alert">
+                  Concrete mode may be slower because the trusted client and
+                  service provider exchange encrypted artifacts for each query.
+                </div>
+              )}
 
               <div className="full-width poi-form-actions">
                 <button className="primary-btn" type="submit" disabled={loading}>
@@ -220,6 +230,10 @@ export default function PoiSearchPage() {
                 <div className="poi-meta-item">
                   <span>K</span>
                   <strong>{responseMeta.k}</strong>
+                </div>
+                <div className="poi-meta-item">
+                  <span>Returned</span>
+                  <strong>{responseMeta.resultCount}</strong>
                 </div>
               </div>
             )}

@@ -1,3 +1,4 @@
+# service_provider_app/app/modules/poi_search/engines/ckks_engine.py
 from .base import ServiceProviderEngine
 from ....core.he_engine import (
     dump_ckks_vector,
@@ -5,17 +6,7 @@ from ....core.he_engine import (
     load_public_context,
 )
 
-
 class CKKSEngine(ServiceProviderEngine):
-    """
-    Real CKKS path:
-    - load encrypted query vector [lat_m, lon_m]
-    - for each candidate, compute encrypted squared Euclidean distance:
-        (q_lat - p_lat)^2 + (q_lon - p_lon)^2
-    - return encrypted scores + clear metadata
-    - client decrypts and selects top-k
-    """
-
     def compute_nearest_k(self, category: str, k: int, query: dict, candidates: list[dict]) -> dict:
         metadata = query["metadata"]
         public_context = load_public_context(metadata["public_context"])
@@ -43,7 +34,6 @@ class CKKSEngine(ServiceProviderEngine):
             "scheme": "ckks",
             "encrypted_results": encrypted_results,
             "metadata": {
-                "secret_context": metadata["secret_context"],
                 "requested_k": metadata["requested_k"],
                 "distance_metric": "squared_euclidean_meters",
                 "top_k_on_client": True,

@@ -1,0 +1,10 @@
+%0 = qx                      # EncryptedScalar<uint15>
+%1 = qy                      # EncryptedScalar<uint16>
+%2 = px                      # ClearScalar<uint15>
+%3 = py                      # ClearScalar<uint16>
+%4 = subtract(%0, %2)        # EncryptedScalar<uint1>
+%5 = subtract(%1, %3)        # EncryptedScalar<uint1>
+%6 = multiply(%4, %4)        # EncryptedScalar<uint1>
+%7 = multiply(%5, %5)        # EncryptedScalar<uint1>
+%8 = add(%6, %7)             # EncryptedScalar<uint2>
+return %8

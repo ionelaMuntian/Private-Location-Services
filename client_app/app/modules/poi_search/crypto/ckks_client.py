@@ -10,18 +10,13 @@ from ....core.encryption import (
 
 
 class CKKSClientAdapter(ClientCryptoAdapter):
-    """
-    Real CKKS implementation:
-    - client encrypts [latitude_m, longitude_m]
-    - server computes encrypted squared distances against clear POI coordinates
-    - client decrypts returned encrypted scores and picks top-k
-    """
-
     def prepare_query(self, latitude: float, longitude: float, k: int) -> dict:
         full_context = CKKSContextManager.create_full_context()
 
         query_vector = [float(latitude), float(longitude)]
         encrypted_query = serialize_ckks_vector(ts.ckks_vector(full_context, query_vector))
+
+        secret_context = CKKSContextManager.serialize_secret_context(full_context)
 
         return {
             "plaintext_query": None,
@@ -29,7 +24,6 @@ class CKKSClientAdapter(ClientCryptoAdapter):
                 "payload": encrypted_query,
                 "metadata": {
                     "public_context": CKKSContextManager.serialize_public_context(full_context),
-                    "secret_context": CKKSContextManager.serialize_secret_context(full_context),
                     "query_encoding": "lat_m_lon_m_vector",
                     "distance_metric": "squared_euclidean_meters",
                     "top_k_on_client": True,
@@ -38,21 +32,25 @@ class CKKSClientAdapter(ClientCryptoAdapter):
                     "query_longitude_m": float(longitude),
                 },
             },
+            "local_state": {
+                "secret_context": secret_context,
+                "requested_k": k,
+            },
         }
 
-    def parse_response(self, response_data: dict) -> list[dict]:
-        metadata = response_data["metadata"]
-        secret_context = CKKSContextManager.load_secret_context(metadata["secret_context"])
+    def parse_response(self, response_data: dict, local_state: dict | None = None) -> list[dict]:
+        if local_state is None or "secret_context" not in local_state:
+            raise ValueError("Missing local_state.secret_context for CKKS response parsing.")
+
+        secret_context = CKKSContextManager.load_secret_context(local_state["secret_context"])
+        requested_k = int(local_state["requested_k"])
 
         scored_items = []
         for item in response_data["encrypted_results"]:
             encrypted_score = deserialize_ckks_vector(secret_context, item["encrypted_distance"])
             decrypted = encrypted_score.decrypt()
 
-            if isinstance(decrypted, list):
-                score = float(decrypted[0])
-            else:
-                score = float(decrypted)
+            score = float(decrypted[0]) if isinstance(decrypted, list) else float(decrypted)
 
             scored_items.append(
                 {
@@ -66,5 +64,4 @@ class CKKSClientAdapter(ClientCryptoAdapter):
             )
 
         scored_items.sort(key=lambda x: x["distance_km"])
-        requested_k = int(metadata["requested_k"])
         return scored_items[:requested_k]

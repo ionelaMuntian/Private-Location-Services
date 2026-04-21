@@ -6,7 +6,7 @@ from ..core.config import settings
 
 
 async def get_from_service_provider(path: str) -> dict:
-    async with httpx.AsyncClient(timeout=120.0) as client:
+    async with httpx.AsyncClient(timeout=300.0) as client:
         try:
             response = await client.get(f"{settings.service_provider_base_url}{path}")
         except httpx.HTTPError as exc:

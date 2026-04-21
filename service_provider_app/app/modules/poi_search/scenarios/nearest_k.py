@@ -36,9 +36,9 @@ def execute_nearest_k(request: ServiceProviderNearestKRequest) -> dict:
             "results": results,
         }
 
-    if request.scheme == "ckks":
+    if request.scheme in {"ckks", "concrete"}:
         if request.encrypted_query is None:
-            raise HTTPException(status_code=422, detail="encrypted_query is required for ckks mode.")
+            raise HTTPException(status_code=422, detail=f"encrypted_query is required for {request.scheme} mode.")
 
         candidates = repository.get_candidates_by_category(
             category=request.category,
@@ -47,7 +47,7 @@ def execute_nearest_k(request: ServiceProviderNearestKRequest) -> dict:
             limit=max(request.k * 20, 200),
         )
 
-        engine = get_engine("ckks")
+        engine = get_engine(request.scheme)
         return engine.compute_nearest_k(
             category=request.category,
             k=request.k,
@@ -58,7 +58,4 @@ def execute_nearest_k(request: ServiceProviderNearestKRequest) -> dict:
             candidates=candidates,
         )
 
-    raise HTTPException(
-        status_code=501,
-        detail="Only plaintext and ckks are enabled right now.",
-    )
+    raise HTTPException(status_code=501, detail=f"Scheme {request.scheme} is not enabled.")
